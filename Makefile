@@ -2,14 +2,15 @@ NAME	= fractol
 OS		= $(shell uname)
 
 SRCDIR	= ./src
+FRADIR	= ./fractals
 INCDIR	= ./includes
 OBJDIR	= ./obj
 
 SRC_FILES	= main.c hooks.c events.c render.c utils.c
-SRC_FILES	+= $(addprefix fractals/, $(shell ls $(SRCDIR)/fractals | grep -E ".+\.c"))
+FRA_FILES	= fractals/julia.c fractals/mandelbrot.c
 
 SRC		= $(addprefix $(SRCDIR)/, $(SRC_FILES))
-OBJ		= $(addprefix $(OBJDIR)/, $(SRC_FILES:.c=.o))
+OBJ		= $(addprefix $(OBJDIR)/, $(SRC_FILES:.c=.o) $(FRA_FILES:.c=.o))
 
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g
@@ -47,7 +48,7 @@ obj:
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
-$(OBJDIR)/fractals/%.o: $(SRCDIR)/fractals/%.c
+$(OBJDIR)/fractals/%.o: $(FRADIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 $(FT_LIB):
