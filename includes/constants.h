@@ -6,15 +6,15 @@
 /*   By: rtaboada <rtaboada@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 13:25:09 by rtaboada          #+#    #+#             */
-/*   Updated: 2024/08/30 21:24:34 by rtaboada         ###   ########.fr       */
+/*   Updated: 2024/08/31 00:21:24 by rtaboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1200
+# define HEIGHT 1000
 
 # define COLOR_BLACK 0x000000
 # define COLOR_WHITE 0xFFFFFF
@@ -32,7 +32,7 @@
 # define COLOR_PINK 0xFFC0CB
 # define COLOR_BROWN 0xA52A2A
 
-# define KEY_ESC 53
+# define KEY_ESC 65307
 # define KEY_LEFT 65361
 # define KEY_UP 65362
 # define KEY_RIGHT 65363

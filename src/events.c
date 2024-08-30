@@ -6,7 +6,7 @@
 /*   By: rtaboada <rtaboada@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:50:23 by rtaboada          #+#    #+#             */
-/*   Updated: 2024/08/30 22:29:29 by rtaboada         ###   ########.fr       */
+/*   Updated: 2024/08/31 00:10:46 by rtaboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ static void	move(t_fractol *data, double distance, char direction)
 int	key_event(int keycode, t_fractol *data)
 {
 	if (keycode == KEY_ESC)
-	{
-		close_window(data);
-		return (0);
-	}
+		return (close_window(data), 0);
 	else if (keycode == KEY_PLUS)
 		zoom(data, 0.5);
 	else if (keycode == KEY_MINUS)

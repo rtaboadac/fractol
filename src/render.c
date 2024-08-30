@@ -6,7 +6,7 @@
 /*   By: rtaboada <rtaboada@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:45:09 by rtaboada          #+#    #+#             */
-/*   Updated: 2024/08/30 22:29:52 by rtaboada         ###   ########.fr       */
+/*   Updated: 2024/08/31 00:18:44 by rtaboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ static void	render_pixel(int x, int y, t_fractol *data)
 
 	convert_pixel_to_complex(x, y, data, &c);
 	color = get_fractal_color(data, c);
-	if (x == WIDTH / 2 && y == HEIGHT / 2)
-		printf("Pixel (%d, %d): Complex (%.2f, %.2f), Color: #%06x\n", x, y,
-				c.re, c.im, color);
 	put_pixel_to_image(data, x, y, color);
 }
 
