@@ -6,8 +6,8 @@ FRADIR	= ./fractals
 INCDIR	= ./includes
 OBJDIR	= ./obj
 
-SRC_FILES	= main.c hooks.c events.c render.c utils.c
-FRA_FILES	= fractals/julia.c fractals/mandelbrot.c
+SRC_FILES	= main.c hooks.c events.c render.c utils.c palette.c color.c helpers.c parse.c
+FRA_FILES	= fractals/julia.c fractals/mandelbrot.c fractals/burning_ship.c
 
 SRC		= $(addprefix $(SRCDIR)/, $(SRC_FILES))
 OBJ		= $(addprefix $(OBJDIR)/, $(SRC_FILES:.c=.o) $(FRA_FILES:.c=.o))

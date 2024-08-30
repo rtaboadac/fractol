@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtaboada <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rtaboada <rtaboada@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 16:18:42 by rtaboada          #+#    #+#             */
-/*   Updated: 2024/06/24 16:19:51 by rtaboada         ###   ########.fr       */
+/*   Created: 2024/01/10 20:08:11 by roberto           #+#    #+#             */
+/*   Updated: 2024/08/30 21:58:35 by rtaboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 
+int					ft_strcmp(const char *s1, const char *s2);
+
 char				*ft_strnstr(const char *haystack, const char *needle,
 						size_t len);
 
@@ -115,5 +117,9 @@ int					ft_lstsize(t_list *lst);
 char				*ft_strrchr(const char *s, int c);
 
 void				*ft_realloc(void *ptr, size_t size);
+
+int					ft_isspace(int c);
+
+int					ft_ishexdigit(int c);
 
 #endif

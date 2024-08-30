@@ -6,7 +6,7 @@
 /*   By: rtaboada <rtaboada@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 13:25:09 by rtaboada          #+#    #+#             */
-/*   Updated: 2024/08/25 14:43:23 by rtaboada         ###   ########.fr       */
+/*   Updated: 2024/08/30 21:24:34 by rtaboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define COLOR_PINK 0xFFC0CB
 # define COLOR_BROWN 0xA52A2A
 
-# define KEY_ESC 65307
+# define KEY_ESC 53
 # define KEY_LEFT 65361
 # define KEY_UP 65362
 # define KEY_RIGHT 65363
@@ -58,8 +58,20 @@
 # define MOUSE_MIDDLE 3
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
+# define MOUSE_CLICK 5
+
+# define CLOSE_EVENT 17
 
 # define ZOOM_FACTOR 1.1
 # define MAX_ITERATIONS 100
+
+# define JULIA 0
+# define JULIA_STR "julia"
+# define MANDELBROT 1
+# define MANDELBROT_STR "mandelbrot"
+# define BURNING_SHIP 2
+# define BURNING_SHIP_STR "burning_ship"
+
+# define NUM_PALETTES 5
 
 #endif

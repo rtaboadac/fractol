@@ -6,7 +6,7 @@
 /*   By: rtaboada <rtaboada@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 13:53:26 by rtaboada          #+#    #+#             */
-/*   Updated: 2024/08/27 20:14:21 by rtaboada         ###   ########.fr       */
+/*   Updated: 2024/08/30 22:27:15 by rtaboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	init_mlx(t_fractol *data)
 			&data->line_length, &data->endian);
 }
 
-static void	init_fractal(t_fractol *data, char *fractal_type)
+static void	init_fractal(t_fractol *data)
 {
 	data->zoom = 1.0;
 	data->offset_x = 0.0;
@@ -36,36 +36,31 @@ static void	init_fractal(t_fractol *data, char *fractal_type)
 	data->max_r = 2.0;
 	data->min_i = -2.0;
 	data->max_i = 2.0;
-	if (ft_strncmp(fractal_type, "mandelbrot", ft_strlen("mandelbrot")) == 0)
-		data->fractal_type = 0;
-	else if (ft_strncmp(fractal_type, "julia", ft_strlen("julia")) == 0)
-	{
-		data->fractal_type = 1;
-		data->kr = -0.7;
-		data->ki = 0.27015;
-	}
-	else
-	{
-		ft_printf("Unknown fractal type: %s\n", fractal_type);
-		exit(EXIT_FAILURE);
-	}
+}
+
+void	init_color_palettes(t_color palettes[NUM_PALETTES][MAX_ITERATIONS])
+{
+	init_palette_one(palettes[0]);
+	init_palette_two(palettes[1]);
+	init_palette_three(palettes[2]);
+	init_palette_four(palettes[3]);
+	init_palette_five(palettes[4]);
 }
 
 int	main(int argc, char **argv)
 {
 	t_fractol	data;
 
-	if (argc != 2)
-	{
-		ft_printf("Available fractal types: mandelbrot, julia\n");
+	if (!parse_arguments(argc, argv, &data))
 		return (1);
-	}
+	init_color_palettes(data.palettes);
+	data.selected_palette = data.palettes[0];
 	init_mlx(&data);
-	init_fractal(&data, argv[1]);
+	init_fractal(&data);
 	render_fractal(&data);
-	mlx_key_hook(data.win, key_hook, &data);
-	mlx_mouse_hook(data.win, mouse_hook, &data);
-	mlx_hook(data.win, 17, 0, close_window, &data);
+	mlx_key_hook(data.win, key_event, &data);
+	mlx_mouse_hook(data.win, mouse_event, &data);
+	mlx_hook(data.win, CLOSE_EVENT, 0, close_window, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

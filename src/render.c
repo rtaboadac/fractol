@@ -6,30 +6,49 @@
 /*   By: rtaboada <rtaboada@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:45:09 by rtaboada          #+#    #+#             */
-/*   Updated: 2024/08/27 23:58:46 by rtaboada         ###   ########.fr       */
+/*   Updated: 2024/08/30 22:29:52 by rtaboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static void	calculate_point(t_fractol *data, int x, int y)
+static void	convert_pixel_to_complex(int x, int y, t_fractol *data,
+		t_complex *c)
 {
-	double	zr;
-	double	zi;
-	int		n;
-	int		color;
+	c->re = data->min_r + (x * (data->max_r - data->min_r) / WIDTH);
+	c->im = data->max_i - (y * (data->max_i - data->min_i) / HEIGHT);
+}
 
-	zr = data->min_r + (double)x * (data->max_r - data->min_r) / WIDTH;
-	zi = data->max_i + (double)y * (data->min_i - data->max_i) / HEIGHT;
+int	get_fractal_color(t_fractol *data, t_complex c)
+{
+	int	iteration;
+
 	if (data->fractal_type == 0)
-		n = mandelbrot(zr, zi);
+		iteration = mandelbrot(c.re, c.im);
+	else if (data->fractal_type == 1)
+		iteration = julia(data, c.re, c.im);
+	else if (data->fractal_type == 2)
+		iteration = burning_ship(c.re, c.im);
 	else
-		n = julia(data, zr, zi);
-	color = get_color(n);
+		return (0x000000);
+	return (get_color_from_palette(iteration, data->selected_palette,
+			data->color));
+}
+
+static void	render_pixel(int x, int y, t_fractol *data)
+{
+	t_complex	c;
+	int			color;
+
+	convert_pixel_to_complex(x, y, data, &c);
+	color = get_fractal_color(data, c);
+	if (x == WIDTH / 2 && y == HEIGHT / 2)
+		printf("Pixel (%d, %d): Complex (%.2f, %.2f), Color: #%06x\n", x, y,
+				c.re, c.im, color);
 	put_pixel_to_image(data, x, y, color);
 }
 
-static void	iterate_fractal(t_fractol *data)
+void	render_fractal(t_fractol *data)
 {
 	int	x;
 	int	y;
@@ -40,15 +59,10 @@ static void	iterate_fractal(t_fractol *data)
 		x = 0;
 		while (x < WIDTH)
 		{
-			calculate_point(data, x, y);
+			render_pixel(x, y, data);
 			x++;
 		}
 		y++;
 	}
-}
-
-void	render_fractal(t_fractol *data)
-{
-	iterate_fractal(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
