@@ -6,7 +6,7 @@
 /*   By: rtaboada <rtaboada@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 13:07:43 by rtaboada          #+#    #+#             */
-/*   Updated: 2024/08/30 22:12:57 by rtaboada         ###   ########.fr       */
+/*   Updated: 2024/08/31 00:37:00 by rtaboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void		handle_arrow_keys(int keycode, t_fractol *data);
 void		handle_zoom_keys(int keycode, t_fractol *data);
 void		put_pixel_to_image(t_fractol *data, int x, int y, int color);
 int			get_color(int iteration);
-void		color_shift(t_fractol *f);
+void		color_shift(t_fractol *data);
 int			parse_arguments(int argc, char **argv, t_fractol *data);
 double		parse_float(char *str);
 int			mandelbrot(double cr, double ci);

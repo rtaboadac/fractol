@@ -45,10 +45,10 @@ obj:
 	@mkdir -p $(OBJDIR)
 	@mkdir -p $(OBJDIR)/fractals
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c includes/constants.h includes/fractol.h
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
-$(OBJDIR)/fractals/%.o: $(FRADIR)/%.c
+$(OBJDIR)/fractals/%.o: $(FRADIR)/%.c includes/constants.h includes/fractol.h
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 $(FT_LIB):

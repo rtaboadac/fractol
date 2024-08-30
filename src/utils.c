@@ -6,7 +6,7 @@
 /*   By: rtaboada <rtaboada@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 14:53:51 by rtaboada          #+#    #+#             */
-/*   Updated: 2024/08/30 22:23:18 by rtaboada         ###   ########.fr       */
+/*   Updated: 2024/08/31 00:48:36 by rtaboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,24 @@ int	get_color(int iteration)
 	int	color;
 
 	if (iteration == MAX_ITERATIONS)
-		color = COLOR_BLACK;
-	else
 		color = (iteration * 0xFF / MAX_ITERATIONS) << 16;
+	else
+		color = COLOR_BLACK;
 	return (color);
 }
 
-void	color_shift(t_fractol *f)
+void	color_shift(t_fractol *data)
 {
-	(void)f;
+	static int	i;
+
+	i = i % 3 + 1;
+	if (i == 1)
+		data->color = 0xFF;
+	else if (i == 0)
+		data->color = 0xFF00;
+	else
+		data->color = 0xFABADA;
+	(void)data;
 }
 
 int	close_window(t_fractol *data)
